@@ -57,8 +57,7 @@ class Users(Resource):
                 }, 
             ExpressionAttributeNames={
             "#name": "name"
-                }
-  }
+                },
                 ReturnValues='UPDATED_NEW')
         return jsonify(response)
 
