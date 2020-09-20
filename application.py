@@ -50,11 +50,15 @@ class Users(Resource):
 
         response = table.update_item(
             Key={'id': id},
-            UpdateExpression='set name=:n, password=:p, email=:e',
+            UpdateExpression='set #name=:n, password=:p, email=:e',
             ExpressionAttributeValues={
                 ':n': name, ':p': password,
                 ':e': email
                 }, 
+            ExpressionAttributeNames={
+            "#name": "name"
+                }
+  }
                 ReturnValues='UPDATED_NEW')
         return jsonify(response)
 
