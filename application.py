@@ -15,7 +15,7 @@ class Users(Resource):
 
     @application.route('/teste')
     def hello():
-        return '<h1>Hola FIAP!</h1>\nMBA! o/'
+        return '<h1>Olá FIAP!</h1>\nMBA! o/'
 
     def get(self):
         response = table.scan()
