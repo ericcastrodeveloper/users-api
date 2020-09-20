@@ -13,7 +13,7 @@ api = Api(application)
 
 class Users(Resource):
 
-    @application.route('/teste')
+    @application.route('/')
     def hello():
         return '<h1>Hola FIAP!</h1>\nMBA! o/'
 
@@ -64,11 +64,11 @@ class UserById(Resource):
     def delete(self, id):
         try:
             response = table.delete_item(Key={'id': id})
-        except ClientError, e:
+        except ClientError as e:
 
             if e.response['Error']['Code'] \
                 == 'ConditionalCheckFailedException':
-                print e.response['Error']['Message']
+                print (e.response['Error']['Message'])
             else:
                 raise
         else:
@@ -78,8 +78,8 @@ class UserById(Resource):
     def get(self, id):
         try:
             response = table.get_item(Key={'id': id})
-        except ClientError, e:
-            print e.response['Error']['Message']
+        except ClientError as e:
+            print (e.response['Error']['Message'])
         else:
             return jsonify(response['Item'])
 
