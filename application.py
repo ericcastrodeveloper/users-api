@@ -5,7 +5,7 @@ from botocore.exceptions import ClientError
 from pprint import pprint
 import boto3
 
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 table = dynamodb.Table('Users')
 application = Flask(__name__)
 api = Api(application)
