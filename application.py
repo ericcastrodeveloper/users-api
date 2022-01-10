@@ -15,7 +15,7 @@ class Users(Resource):
 
     @application.route('/')
     def hello():
-        return '<h1>Ola FIAP!</h1>\nMBA! o/'
+        return '<h1>API - Users!</h1>'
 
     def get(self):
         response = table.scan()
@@ -86,9 +86,20 @@ class UserById(Resource):
         else:
             return jsonify(response['Item'])
 
+class UserByEmail(Resource):
+
+    def get(self, email):
+        try:
+            response = table.get_item(Key={'email': email})
+        except ClientError as e:
+            print (e.response['Error']['Message'])
+        else:
+            return jsonify(response['Item'])
+
 
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<id>')
+api.add_resource(UserByEmail, '/users/email/<email>')
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0',debug=True)
