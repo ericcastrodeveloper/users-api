@@ -90,7 +90,7 @@ class UserByEmail(Resource):
 
     def get(self, email):
         try:
-            response = table.get_item(Key={'email': email})
+            response = table.query(KeyConditionExpression=Key('email').eq(email))
         except ClientError as e:
             print (e.response['Error']['Message'])
         else:
